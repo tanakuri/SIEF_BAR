@@ -1,0 +1,52 @@
+#siefHome {
+    list-style-image: url("chrome://siefbar/skin/bee_final.png");
+}
+
+#siefHome > .toolbarbutton-menubutton-button {
+    -moz-box-orient: horizontal;
+}
+
+
+#twikiPage {
+    list-style-image: url("chrome://siefbar/skin/y_final.png");
+}
+
+#twikiPage > .toolbarbutton-menubutton-button {
+    -moz-box-orient: horizontal;
+}
+
+#bugMenu {
+    list-style-image: url("chrome://siefbar/skin/bug_final.png");
+}
+
+#templates {
+    list-style-image: url("chrome://siefbar/skin/bblanc_final.png");
+}
+
+#templates > .toolbarbutton-menubutton-button {
+    -moz-box-orient: horizontal;
+}
+
+/*
+#otherMenu {
+    list-style-image: url("chrome://siefbar/skin/y_final.png");
+}
+*/
+
+#chris{
+    border: none !important;
+    background: url("chrome://siefbar/skin/chris_final.png");
+
+}
+#siefQuery { 
+	font-size: 100%; 
+} 
+
+#astridizer { 
+	font-size: 100%; 
+  
+} 
+
+#astridizerCacheButton{
+    list-style-image: url("chrome://siefbar/skin/astrid.png");
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://siefbar/skin/siefbar.css" type="text/css"?>
+
+<window id="myWindow-report" title="Example 4.5.1" xmlns:html="http://www.w3.org/1999/xhtml"
+ xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<script type="application/x-javascript" src="chrome://siefbar/content/siefbar.js" />
+
+	<iframe id="myFrame" flex="1"/>
+
+	<script type="text/javascript">
+		function loadPage(url){
+			document.getElementById('myFrame').setAttribute('src',url);
+		}
+	</script>
+
+
+</window>

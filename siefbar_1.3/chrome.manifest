@@ -1,0 +1,3 @@
+content siefbar content/
+overlay chrome://browser/content/browser.xul chrome://siefbar/content/siefbar.xul
+skin siefbar classic/1.0 skin/

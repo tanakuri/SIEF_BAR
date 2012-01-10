@@ -1,0 +1,209 @@
+<?xml version="1.0"?>       
+<?xml-stylesheet href="chrome://siefbar/skin/siefbar.css"
+                 type="text/css"?>
+          
+<overlay id="myWindow"
+ xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	
+	<script type="application/x-javascript" src="chrome://siefbar/content/siefbar.js" />
+
+	<toolbox id="navigator-toolbox">
+		<!-- SIEF Toolbar-->
+		<toolbar id="SIEFToolbar" toolbarname="SIEF Toolbar"
+		 persist="hidden" context="toolbar-context-menu">
+			<!--Left of SIEF textbox-->
+			<toolbaritem flex="0">
+			
+				<!-- SIEF HOME-->
+				<toolbarbutton id="siefHome"
+				 type="menu-button" tooltiptext="Editor Home"
+				  label="SIEF" oncommand="siefEditorHome()">
+					<menupopup>
+						<menuitem id="siefCreateNewButton" label="Create New Rule"
+						 class="menuitem-iconic" tooltiptext="Create New Rule"
+						 oncommand="siefCreateNew(); event.stopPropagation();" />
+						<menuitem id="siefSignUpButton" label="Sign Up"
+						 class="menuitem-iconic" tooltiptext="Sign Up Home"
+						 oncommand="siefSignUp(); event.stopPropagation();" />
+						<menuitem id="siefEditorHomeButton" label="Editor Home"
+						 class="menuitem-iconic" tooltiptext="Editor Home"
+						 oncommand="siefEditorHome(); event.stopPropagation();" />
+						<menuitem id="siefReviewerHomeButton" label="Reviewer Home"
+						 class="menuitem-iconic" tooltiptext="Reviewer Home"
+						 oncommand="siefReviewerHome(); event.stopPropagation();" />            
+						<menuitem id="siefAdminHomeButton" label="Admin Home"
+						 class="menuitem-iconic" tooltiptext="Admin Home"
+						 oncommand="siefAdminHome(); event.stopPropagation();" />      
+					</menupopup>
+				</toolbarbutton>	  
+				
+				<!--SIEF Search-->
+				<toolbarbutton id="siefSearch" tooltiptext="Search A Rule Based on Domain"
+				 label="Search:" oncommand="siefDomainSearch(event)"/>
+			</toolbaritem>
+		   
+			<!--Textbox and splitter-->
+			<textbox id="siefQuery" cols="1" height="20" size="20" emptytext="Enter Domain name or SIEF ID"
+			 class="textbox"/>
+			<splitter id="chris" state="open" collapse="none"
+			 resizebefore="closest" resizeafter="farthest"
+			 tooltiptext="Resize the Search Box">
+				<vbox id="TutTB-ResizeBar" width="20"/>
+			</splitter>
+			
+			<!--Right of SIEF textbox-->
+			<toolbaritem flex="0">
+			
+				<!--Editor Reviewer Admin-->
+				<toolbarbutton id="siefEditorButton"
+				 type="menu-button" tooltiptext="Editor Search"
+				 label="Editor" oncommand="siefEditorSearch(event)">
+					<menupopup>
+						<menuitem id="siefEditorButton2" label="Editor"
+						 class="menuitem-iconic" tooltiptext="Editor Home"
+						 oncommand="siefEditorSearch(event); event.stopPropagation();" />
+						<menuitem id="siefOutputButton" label="Output"
+						 class="menuitem-iconic" tooltiptext="Rule Output"
+						 oncommand="siefOutputSearch(event); event.stopPropagation();" />
+						<menuitem id="siefLogButton" label="Log"
+						 class="menuitem-iconic" tooltiptext="Rule Log"
+						 oncommand="siefLogSearch(event); event.stopPropagation();" />
+						<menuitem id="siefHistoryButton" label="History"
+						 class="menuitem-iconic" tooltiptext="Rule History"
+						 oncommand="siefHistorySearch(event); event.stopPropagation();" />            
+					</menupopup>
+				</toolbarbutton>
+				<toolbarbutton id="siefReviewerButton" tooltiptext="Search rule to Review"
+				 label="Reviewer" oncommand="siefReviewerSearch(event)" />
+				<toolbarbutton id="siefAdminButton" tooltiptext="Search a rule in Admin"
+				 label="Admin" oncommand="siefAdminSearch(event)" />
+				
+				<!--Astridizer-->
+				<textbox id="astridizerQuery" cols="1" height="20" size="30" emptytext="Enter live page URL"
+				 class="textbox"/>	
+				<toolbarbutton id="astridizerCacheButton" tooltiptext="Find Cache Page"
+				 label="Astridize It!" oncommand="astridizerCache(event)"/>    
+				<toolbarbutton id="astridizerLiveButton" tooltiptext="Go to Live Page"
+				 label="Live page..." oncommand="astridizerLive(event)"/>  
+				 
+				<!--Templates-->
+				<toolbarbutton id="templates" type="menu"
+				 tooltiptext="Browse and paste templates" label="Templates">   
+					<menupopup>
+						<menuitem label="Path Selector Call Template" tooltiptext="Path Selector Call Template"
+						 oncommand="templatePathSelectorCall(content.document.getElementsByName('savecontent')[0])"/>   
+						<menu id="Phone Extraction" label="Phone Extraction">
+							<menupopup>
+								<menuitem label="Phone Extraction Declaration Template" tooltiptext="Phone Extraction Declaration Template"
+								 oncommand="templatePhoneExtraction(content.document.getElementsByName('savecontent')[0])"/> 
+								<menuitem label="Phone Extraction Call Template" tooltiptext="Phone Extraction Call Template"
+								 oncommand="templatePhoneExtractionCall(content.document.getElementsByName('savecontent')[0])"/>					 
+							</menupopup>
+						</menu>
+						<menuitem label="Picture URL Template" tooltiptext="Picture URL Template"
+						 oncommand="templatePicture(content.document.getElementsByName('savecontent')[0])"/>
+						<menu id="Tokenize" label="Tokenize">
+							<menupopup>
+								<menuitem label="Tokenize Declaration Template" tooltiptext="Tokenize Declaration Template"
+								 oncommand="templateTokenize(content.document.getElementsByName('savecontent')[0])"/>
+								<menuitem label="Tokenize Call Template" tooltiptext="Tokenize Call Template"
+								 oncommand="templateTokenizeCall(content.document.getElementsByName('savecontent')[0])"/>	
+							</menupopup>
+						</menu>	
+						<menu id="Time and Date" label="Time and Date">
+							<menupopup>
+								<menuitem label="Time and Date Declaration Template" tooltiptext="Time and Date Extraction Declaration Template"
+								 oncommand="templateDateTime(content.document.getElementsByName('savecontent')[0])"/>	
+								<menu id="Time and Date Call Templates" label="Time and Date Call Templates">
+									<menupopup>
+										<menuitem label="English" tooltiptext="Time and Date Extraction Declaration Template (English)"
+										 oncommand="templateDateTimeCallEnglish(content.document.getElementsByName('savecontent')[0])"/>	
+										<menuitem label="French" tooltiptext="Time and Date Extraction Declaration Template (French)"
+										 oncommand="templateDateTimeCallFrench(content.document.getElementsByName('savecontent')[0])"/>	
+										<menuitem label="Italian" tooltiptext="Time and Date Extraction Declaration Template (Italian)"
+										 oncommand="templateDateTimeCallItalian(content.document.getElementsByName('savecontent')[0])"/>	
+										<menuitem label="Spanish" tooltiptext="Time and Date Extraction Declaration Template (Spanish)"
+										 oncommand="templateDateTimeCallSpanish(content.document.getElementsByName('savecontent')[0])"/>	
+										<menuitem label="German" tooltiptext="Time and Date Extraction Declaration Template (German)"
+										 oncommand="templateDateTimeCallGerman(content.document.getElementsByName('savecontent')[0])"/>									 
+									</menupopup>
+								</menu>									 
+							</menupopup>
+						</menu>									 
+					</menupopup>
+				</toolbarbutton>	
+				
+				<toolbarseparator /> 	
+				
+				<!--Twiki Pages-->
+				<toolbarbutton id="twikiPage" type="menu-button" tooltiptext="Go To Twiki Pages"
+				 label="SDE Twiki:" oncommand="twikiHome()">
+					<menupopup>
+						<menu id="EscalationMenu" label="Escalation">
+							<menupopup>
+								<menuitem label="Andrea's Escalation" tooltiptext="Andrea's Escalation"
+								 oncommand="twikiEscalationAndrea()" />
+								<menuitem label="Astrid's Escalation" tooltiptext="Astrid's Escalation"
+								 oncommand="twikiEscalationAstrid()" />
+								<menuitem label="Bertrand's Escalation" tooltiptext="Bertrand' Escalation"
+								 oncommand="twikiEscalationBertrand()" />
+								<menuitem label="Chris' Escalation" tooltiptext="Chris' Escalation"
+								 oncommand="twikiEscalationChris()" />
+								<menuitem label="Cliff's Escalation" tooltiptext="Cliff's Escalation"
+								 oncommand="twikiEscalationCliff()" />
+								<menuitem label="Matt's Escalation" tooltiptext="Matt's Escalation"
+								 oncommand="twikiEscalationMatt()" />
+								<menuitem label="Sean's Escalation" tooltiptext="Sean's Escalation"
+								 oncommand="twikiEscalationSean()" />
+								<menuitem label="2nd Level Escalation" tooltiptext="2nd Level Escalation"
+								 oncommand="twikiSecondEscalation()" />          
+							</menupopup>
+						</menu>
+						<menu id="bugMenu" label="Bugs/Wishlist">
+							<menupopup>
+								<menuitem label="Bugs/Wishlist" tooltiptext="Bugs/Wishlist"
+								 oncommand="bugWishlist()"/>
+								<menuitem label="Known Issues" tooltiptext="Known Issues"
+								 oncommand="bugKnownIssues()"/>
+								<menuseparator />
+								<menuitem label="SIEF Outage" tooltiptext="SIEF Outage"
+								 oncommand="bugSiefOutage()" />
+								<menuitem label="File an XSLT Bug" tooltiptext="XSLT Bug"
+								 oncommand="bugXSLTBug()" />
+								<menuitem label="File a SIEF Bug" tooltiptext="SIEF Bug"
+								 oncommand="bugSiefBug()" />
+								<menuitem label="File a SIEF-Related or Plang Flip issue bug" tooltiptext="Related or Plang Flip"
+								 oncommand="bugSiefRelated()" />
+								<menuitem label="File an FE SRP Bug" tooltiptext="FE SRP Bug"
+								 oncommand="bugFESRP()" />
+								<menuitem label="File a Crawl Bug" tooltiptext="Crawl Bug"
+								 oncommand="bugCrawl()" />          
+							</menupopup>
+						</menu>
+						<menuitem id="manualPush" tooltiptext="Go To Manual Push Page"
+						 label="Manual Push" oncommand="twikiManualPush()"/>
+					</menupopup>
+				</toolbarbutton>   				
+					
+				<toolbarseparator/>  	
+				
+				<!--Other links-->
+				<toolbarbutton id="otherMenu" type="menu"
+				 label="Other Yahoo! Links" tooltiptext="Other Links">
+					<menupopup>
+						<menuitem label="BackYard" tooltiptext="BackYard"
+						 oncommand="backYard()"/>
+						<menuitem label="Tokei" tooltiptext="Known Issues"
+						 oncommand="tokei()"/>
+						<menuitem label="Workforce Logic" tooltiptext="Hours"
+						 oncommand="workForce()" />  
+					</menupopup>
+				</toolbarbutton>  	
+			</toolbaritem>
+		</toolbar>
+	</toolbox>
+</overlay>
+
+
+
+
